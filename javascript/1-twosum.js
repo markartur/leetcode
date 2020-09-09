@@ -3,18 +3,23 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (nums, target) {
+let twoSum = function (nums, target) {
+    let numberIndex = {};
+    let result = [];
 
-    for (var i = 0; i < nums.length; i++) {
-        for (var y = i + 1; y < nums.length; y++) {
-            if (nums[i] + nums[y] == target) {
-                var response = []
-                response.push(i)
-                response.push(y)
-                return response
-            }
+    for (let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+        let complement = target - num;
+
+        if (numberIndex[complement] !== undefined) {
+            result[0] = numberIndex[complement];
+            result[1] = i;
+
+            return result;
         }
 
+        numberIndex[num] = i;
     }
-    return []
+
+    return result;
 };
